@@ -16,15 +16,15 @@ def main():
 
     course_nodes = dom.findall('course')
 
-    courses =[]
-    for n in course_nodes:
-        c = Course(
+    courses =[
+        Course(
             n.find('title').text,
             n.find('place/room').text,
             n.find('place/building').text
-
         )
-        courses.append(c)
+        for n in course_nodes
+        ]
+
 
     building = input("What building are you in? ")
     room = input("What room are you next to? ")
