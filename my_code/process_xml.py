@@ -26,7 +26,18 @@ def main():
         )
         courses.append(c)
 
-    print(courses)
+    building = input("What building are you in? ")
+    room = input("What room are you next to? ")
+
+    room_courses = [
+        c.title
+        for c in courses
+        if c.building == building and c.room == room
+    ]
+
+    for c in room_courses:
+        print("* " + c)
+
 
 if __name__ == '__main__':
     main()
