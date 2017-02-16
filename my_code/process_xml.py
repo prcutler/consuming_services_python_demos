@@ -1,5 +1,8 @@
 from xml.etree import ElementTree
+import collections
 import os
+
+Course = collections.namedtuple('Course', 'title room building')
 
 
 def main():
@@ -10,7 +13,20 @@ def main():
         xml_text = fin.read()
 
     dom = ElementTree.fromstring(xml_text)
-    print(dom)
+
+    course_nodes = dom.findall('course')
+
+    courses =[]
+    for n in course_nodes:
+        c = Course(
+            n.find('title').text,
+            n.find('place/room').text,
+            n.find('place/building').text
+
+        )
+        courses.append(c)
+
+    print(courses)
 
 if __name__ == '__main__':
     main()
